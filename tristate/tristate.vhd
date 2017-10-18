@@ -9,4 +9,4 @@ end;
 architecture synth of tristate is
 begin
 	y <= "ZZZZ" when en = '0' else a;
-end.
+end;
