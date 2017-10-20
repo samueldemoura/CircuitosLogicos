@@ -28,8 +28,8 @@ begin
 dut: tristate port map (a, en, y);
 -- generate clock
 process begin
-	clk <= '1'; wait for 5 ns;  
-	clk <= '0'; wait for 5 ns;
+	clk <= '1'; wait for 15 ns;  
+	clk <= '0'; wait for 10 ns;
 end process;
 -- at start of test, load vectors
 -- and pulse reset
@@ -87,7 +87,7 @@ process (clk) begin
 		
 		vectornum := vectornum + 1;
 		-- if (is_x (testvectors(vectornum))) then
-		if (vectornum = 4) then
+		if (vectornum = MEMSIZE) then
 			if (errors = 0) then
 				report "Just kidding --" &
 				integer'image (vectornum) &

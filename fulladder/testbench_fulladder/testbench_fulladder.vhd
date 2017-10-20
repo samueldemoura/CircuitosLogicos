@@ -26,8 +26,8 @@ begin
 dut: fulladder port map (a, b, cin, s, cout);
 -- generate clock
 process begin
-	clk <= '1'; wait for 5 ns;  
-	clk <= '0'; wait for 5 ns;
+	clk <= '1'; wait for 15 ns;  
+	clk <= '0'; wait for 10 ns;
 end process;
 -- at start of test, load vectors
 -- and pulse reset

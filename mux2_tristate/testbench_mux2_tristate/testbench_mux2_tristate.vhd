@@ -29,8 +29,8 @@ begin
 dut: mux2_tristate port map (d0, d1, s, y);
 -- generate clock
 process begin
-	clk <= '1'; wait for 5 ns;  
-	clk <= '0'; wait for 5 ns;
+	clk <= '1'; wait for 15 ns;  
+	clk <= '0'; wait for 10 ns;
 end process;
 -- at start of test, load vectors
 -- and pulse reset
