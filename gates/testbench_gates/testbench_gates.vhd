@@ -24,8 +24,8 @@ begin
 dut: gates port map (a, b, y1, y2, y3, y4, y5);
 -- generate clock
 process begin
-	clk <= '1'; wait for 10 ns;  
-	clk <= '0'; wait for 5 ns;
+	clk <= '1'; wait for 20 ns;  
+	clk <= '0'; wait for 20 ns;
 end process;
 -- at start of test, load vectors
 -- and pulse reset

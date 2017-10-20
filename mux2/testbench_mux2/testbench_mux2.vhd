@@ -19,7 +19,7 @@ signal clk: STD_LOGIC;
 signal d0, d1, y: STD_LOGIC_VECTOR(3 downto 0);
 signal s: STD_LOGIC;
 signal yexpected: STD_LOGIC_VECTOR(3 downto 0);
-constant MEMSIZE: integer := 4;
+constant MEMSIZE: integer := 12; --4
 type tvarray is array (MEMSIZE downto 0) of
 STD_LOGIC_VECTOR (12 downto 0);
 signal testvectors: tvarray;
@@ -29,8 +29,8 @@ begin
 dut: mux2 port map (d0, d1, s, y);
 -- generate clock
 process begin
-	clk <= '1'; wait for 5 ns;  
-	clk <= '0'; wait for 5 ns;
+	clk <= '1'; wait for 10 ns;  
+	clk <= '0'; wait for 10 ns;
 end process;
 -- at start of test, load vectors
 -- and pulse reset
