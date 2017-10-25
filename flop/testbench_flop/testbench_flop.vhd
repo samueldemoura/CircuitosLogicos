@@ -75,11 +75,13 @@ end process;
 process (clk) begin
 	if (clk'event and clk = '0')then
 		for k in 0 to 3 loop
-			assert q(k)= qexpected(k)
-				report "Vetor deu erro n. Teste: " &integer'image(vectornum)&". Esperado yesp ="& STD_LOGIC'image(qexpected(k))&"Valor Obtido: q("&integer'image(k)&") ="& STD_LOGIC'image(q(k));
+			if (qexpected /= "UUUU") then
+				assert (q(k) = qexpected(k))
+						report "Vetor deu erro n. Teste: " &integer'image(vectornum)&". Esperado yesp ="& STD_LOGIC'image(qexpected(k))&"Valor Obtido: q("&integer'image(k)&") ="& STD_LOGIC'image(q(k));
 			
-			if (q /= qexpected) then
-				errors := errors + 1;
+				if (q /= qexpected) then
+					errors := errors + 1;
+				end if;
 			end if;
 		end loop;
 		
