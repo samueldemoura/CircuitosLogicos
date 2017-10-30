@@ -66,7 +66,7 @@ end process;
 process (clk) begin
 	if (clk'event and clk='1') then   
 		clk_test <= testvectors (vectornum) (3); --after 1 ns;
-		d <= testvectors (vectornum)(1); --(5 downto 5); --after 1 ns;
+		d <= testvectors (vectornum)(2); --(5 downto 5); --after 1 ns;
 		qexpected <= testvectors (vectornum)(0); --after 1 ns;
 	end if;
 end process;
