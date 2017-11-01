@@ -8,13 +8,9 @@ entity cla4 is
 end;
 
 architecture synth of cla4 is
-component fulladder is
-	port(a, b, cin: in  STD_LOGIC;
-		 s, cout:	out STD_LOGIC);
-end component;
-
 component vua4 is
 	port (p, g: in  STD_LOGIC_VECTOR(3 downto 0);
+		   cin: in  STD_LOGIC;
 		     c: buffer STD_LOGIC_VECTOR(4 downto 0));
 end component;
 
@@ -31,7 +27,7 @@ begin
 	p(3) <= a(3) xor b(3);
 	g(3) <= a(3) and b(3);
 	
-	carry: vua4 port map (p, g, c);
+	carry: vua4 port map (p, g, cin, c);
 	
 	s(0) <= p(0) xor c(0);
 	s(1) <= p(1) xor c(1);
@@ -39,10 +35,4 @@ begin
 	s(3) <= p(3) xor c(3);
 	
 	cout <= c(4);
-	
-	--cout <= g or (p and c(4));
-	--bit0: fulladder port map (a(0), b(0), cin, s(0), cout_aux);
-	--bit2: fulladder port map (a(1), b(1), cout_aux, s(1), cout_aux2);
-	--bit3: fulladder port map (a(2), b(2), cout_aux2, s(2), cout_aux3);
-	--bit4: fulladder port map (a(3), b(3), cout_aux3, s(3), cout);
 end;
