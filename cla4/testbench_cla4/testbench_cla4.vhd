@@ -13,12 +13,13 @@ component cla4
 	port(a, b: in  STD_LOGIC_VECTOR(3 downto 0);
 		  cin: in  STD_LOGIC;
 		    s: out STD_LOGIC_VECTOR(3 downto 0);
-		 cout: out STD_LOGIC);
+		 cout: out STD_LOGIC;
+ p_out, g_out: out STD_LOGIC);
 end component;
 
 signal clk: STD_LOGIC;
 signal a, b, s, sexpected: STD_LOGIC_VECTOR(3 downto 0);
-signal cin, cout, coutexpected: STD_LOGIC;
+signal cin, cout, coutexpected, p_out, g_out: STD_LOGIC;
 
 constant MEMSIZE: integer := 513;
 type tvarray is array (MEMSIZE downto 0) of STD_LOGIC_VECTOR (13 downto 0);
@@ -26,7 +27,7 @@ signal testvectors: tvarray;
 shared variable vectornum, errors: integer;
 begin
 -- instantiate device under test
-dut: cla4 port map (a, b, cin, s, cout);
+dut: cla4 port map (a, b, cin, s, cout, p_out, g_out);
 -- generate clockt
 process begin
 	clk <= '1'; wait for 12 ns;  

@@ -21,7 +21,7 @@ signal c: STD_LOGIC_VECTOR(3 downto 0);
 signal pLCU, gLCU, ignore: STD_LOGIC;
 
 begin
-	--errado c(0) <= g(0) or (p(0) and cin);
+	c(0) <= g(0) or (p(0) and cin);
 	c(1) <= g(1) or (g(0) and p(1)) or (cin and p(0) and p(1));
 	c(2) <= g(2) or (g(1) and p(2)) or (g(0) and p(1) and p(2)) or (cin and p(0) and p(1) and p(2));
 	c(3) <= g(3) or (g(2) and p(3)) or (g(1) and p(2) and p(3)) or (g(0) and p(1) and p(2) and p(3)) or (cin and p(0) and p(1) and p(2) and p(3));
@@ -31,12 +31,7 @@ begin
 	cla4_3: cla4 port map (a(11 downto  8), b(11 downto  8), c(1), s(11 downto  8), ignore, p(2), g(2));
 	cla4_4: cla4 port map (a(15 downto 12), b(15 downto 12), c(2), s(15 downto 12), ignore, p(3), g(3));
 
-	c(0) <= g(0) or (p(0) and cin);
-
 	pLCU <= (p(0) and p(1) and p(2) and p(3));
 	gLCU <= (g(3) or (g(2) and p(3)) or (g(1) and p(2) and p(3)) or (g(0) and p(1) and p(2) and p(3)));
-	--cout <= c(3);
 	cout <= gLCU or (cin and pLCU);
-	--cout <= (g(3) or (g(2) and p(3)) or (g(1) and p(2) and p(3)) or (g(0) and p(1) and p(2) and p(3))) or (cin and (p(0) and p(1) and p(2) and p(3)));
-	--cout <= (g(3) or (g(2) and p(3)) or (g(2) and p(2) and p(3)) or (g(0) and p(1) and p(2) and p(3))) or (c(0) and (p(0) and p(1) and p(2) and p(3)));
 end;

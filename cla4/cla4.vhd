@@ -36,6 +36,7 @@ begin
 	s(3) <= p(3) xor c(3);
 	
 	cout <= c(4);
-	p_out <= p(3); -- index is 3 or 0?
-	g_out <= g(3);
+	
+	p_out <= p(0) and p(1) and p(2) and p(3);
+	g_out <= g(3) or (p(3) and (g(2) or (p(2) and (g(1) or (p(1) and g(0))))));
 end;
