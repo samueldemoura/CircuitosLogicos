@@ -4,7 +4,8 @@ entity cla4 is
 	port(a, b: in  STD_LOGIC_VECTOR(3 downto 0);
 		  cin: in  STD_LOGIC;
 		    s: out STD_LOGIC_VECTOR(3 downto 0);
-		 cout: out STD_LOGIC);
+		 cout: out STD_LOGIC;
+ p_out, g_out: out STD_LOGIC);
 end;
 
 architecture synth of cla4 is
@@ -35,4 +36,6 @@ begin
 	s(3) <= p(3) xor c(3);
 	
 	cout <= c(4);
+	p_out <= p(3); -- index is 3 or 0?
+	g_out <= g(3);
 end;
