@@ -30,7 +30,7 @@ begin
 dut: cla4 port map (a, b, cin, s, cout, p_out, g_out);
 -- generate clockt
 process begin
-	clk <= '1'; wait for 12 ns;  
+	clk <= '1'; wait for 13 ns;  
 	clk <= '0'; wait for 1 ns;
 end process;
 -- at start of test, load vectors

@@ -29,8 +29,8 @@ begin
 dut: cla16 port map (a, b, cin, s, cout);
 -- generate clockt
 process begin
-	clk <= '1'; wait for 20ns; --18 ns;  
-	clk <= '0'; wait for 15ns; --1 ns;
+	clk <= '1'; wait for 19ns; --18 ns;  
+	clk <= '0'; wait for 1ns; --1 ns;
 end process;
 -- at start of test, load vectors
 -- and pulse reset
