@@ -5,7 +5,7 @@ entity final is
 	port(clk: in STD_LOGIC;
 		 a:	in STD_LOGIC_VECTOR(3 downto 0);
 		 sel0, sel1: in STD_LOGIC;
-		 s:	out STD_LOGIC_VECTOR(3 downto 0);
+		 s:	buffer STD_LOGIC_VECTOR(3 downto 0);
 		 cout: out STD_LOGIC);
 end;
 
@@ -36,14 +36,14 @@ component flopr_struct
 		  q:  out STD_LOGIC_VECTOR (3 downto 0));
 end component;
 
-signal notA, somador_y, acc_y, mux0_y, mux1_y: STD_LOGIC_VECTOR(3 downto 0);
+signal notA, somador_y, acc_y, mux0_y: STD_LOGIC_VECTOR(3 downto 0);
 signal ignore, ignore2: STD_LOGIC;
 
 begin
 	inv: inverter_4bit port map(a, notA);
 	mux0: mux2_tristate port map(a, notA, sel0, mux0_y);
-	mux1: mux2_tristate port map(mux0_y, somador_y, sel1, mux1_y);
+	mux1: mux2_tristate port map(mux0_y, somador_y, sel1, s);
 	somador: cla4 port map(mux0_y, acc_y, sel0, somador_y, cout, ignore, ignore);
-	acc: flopr_struct port map(clk, ignore2, mux1_y, acc_y);
-	s <= mux1_y;
+	acc: flopr_struct port map(clk, ignore2, s, acc_y);
+	--s <= mux1_y;
 end;
