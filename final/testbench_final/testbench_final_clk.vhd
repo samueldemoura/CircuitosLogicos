@@ -17,17 +17,17 @@ component final
 		 cout: out STD_LOGIC);
 end component;
 
-signal clk: STD_LOGIC;
+signal clk, clk2: STD_LOGIC;
 signal a, s, sexpected: STD_LOGIC_VECTOR(3 downto 0);
 signal sel0, sel1, cout, coutexpected: STD_LOGIC;
 
 constant MEMSIZE: integer := 100;
-type tvarray is array (MEMSIZE downto 0) of STD_LOGIC_VECTOR (10 downto 0);
+type tvarray is array (MEMSIZE downto 0) of STD_LOGIC_VECTOR (11 downto 0);
 signal testvectors: tvarray;
 shared variable vectornum, errors: integer;
 begin
 -- instantiate device under test
-dut: final port map (clk, a, sel0, sel1, s, cout);
+dut: final port map (clk2, a, sel0, sel1, s, cout);
 -- generate clockt
 process begin
 	clk <= '1'; wait for 50 ns;  
@@ -43,10 +43,10 @@ variable ch: character;
 begin
 	-- read file of test vectors
 	i := 0;
-	FILE_OPEN (tv, "./example.tv", READ_MODE);
+	FILE_OPEN (tv, "./example_clk.tv", READ_MODE);
 	while not endfile(tv) loop
 		readline (tv, L);
-		for j in 10 downto 0 loop
+		for j in 11 downto 0 loop
 			read (L, ch);
 			if (ch = '-') then
 				readline(tv, IGNORE);
@@ -74,6 +74,7 @@ process (clk) begin
 		sel1 <= testvectors (vectornum) (5);
 		sexpected <= testvectors (vectornum)(4 downto 1);
 		coutexpected <= testvectors (vectornum) (0);
+		clk2 <= testvectors (vectornum) (11);
 	end if;
 end process;
 -- check results on falling edge of clk
