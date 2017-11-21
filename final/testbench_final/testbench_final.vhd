@@ -30,8 +30,8 @@ begin
 dut: final port map (clk2, a, sel0, sel1, s, cout);
 -- generate clockt
 process begin
-	clk <= '1'; wait for 50 ns;  
-	clk <= '0'; wait for 50 ns;
+	clk <= '1'; wait for 13 ns;  
+	clk <= '0'; wait for 1 ns;
 end process;
 -- at start of test, load vectors
 -- and pulse reset
